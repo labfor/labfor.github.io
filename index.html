@@ -1,212 +1,19 @@
 <!DOCTYPE html>
 <html lang="en-US">
-
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>DeepBurning</title>
-  <meta name="description"
-    content="Automatic generation of FPGA-based learning accelerators for the Neural Network family">
-
-
-  <link rel="preload" href="/assets/css/0.styles.871f8cc4.css" as="style">
-  <link rel="preload" href="/assets/js/app.987fdba2.js" as="script">
-  <link rel="preload" href="/assets/js/2.3c0b82b5.js" as="script">
-  <link rel="preload" href="/assets/js/4.16c16494.js" as="script">
-  <link rel="prefetch" href="/assets/js/3.7077366f.js">
-  <link rel="prefetch" href="/assets/js/5.417be158.js">
-  <link rel="prefetch" href="/assets/js/6.2733d7bd.js">
-  <link rel="prefetch" href="/assets/js/7.2c827474.js">
-  <link rel="prefetch" href="/assets/js/8.eac7943a.js">
-  <link rel="stylesheet" href="/assets/css/0.styles.871f8cc4.css">
-</head>
-
-<body>
-  <div id="app" data-server-rendered="true">
-    <div class="theme-container no-sidebar">
-      <header class="navbar">
-        <div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img"
-            viewBox="0 0 448 512" class="icon">
-            <path fill="currentColor"
-              d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z">
-            </path>
-          </svg></div> <a href="/" class="home-link router-link-exact-active router-link-active">
-          <!----> <span class="site-name">DeepBurning</span></a>
-        <div class="links">
-          <div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value="">
-            <!---->
-          </div>
-          <nav class="nav-links can-hide">
-            <div class="nav-item"><a href="/documentation/" class="nav-link">Documentation</a></div>
-            <div class="nav-item"><a href="/publications/" class="nav-link">Publications</a></div>
-            <div class="nav-item"><a href="/about/" class="nav-link">About</a></div>
-            <div class="nav-item"><a href="/download/" class="nav-link">Download</a></div>
-            <!---->
-          </nav>
-        </div>
-      </header>
-      <div class="sidebar-mask"></div>
-      <aside class="sidebar">
-        <nav class="nav-links">
-          <div class="nav-item"><a href="/documentation/" class="nav-link">Documentation</a></div>
-          <div class="nav-item"><a href="/publications/" class="nav-link">Publications</a></div>
-          <div class="nav-item"><a href="/about/" class="nav-link">About</a></div>
-          <div class="nav-item"><a href="/download/" class="nav-link">Download</a></div>
-          <!---->
-        </nav>
-        <!---->
-      </aside>
-      <main aria-labelledby="main-title" class="home">
-        <header class="hero"><img src="/logo.png" alt="hero">
-          <!---->
-          <p class="description">
-            Automatic generation of FPGA-based learning accelerators for the Neural Network family
-          </p>
-          <p class="action"><a href="/documentation.html" class="nav-link action-button">Get Started →</a></p>
-        </header>
-        <!---->
-        <div class="theme-default-content custom content__default"><br>
-          <h2 id="introduction"><a href="#introduction" class="header-anchor">#</a> Introduction</h2>
-          <p>DeepBurning [1] is an end-to-end neural network acceleration design tool that generates both customized
-            neural network model and neural processing unit (NPU) for a specialized learning task on FPGAs. The overview
-            of DeepBurning is shown in Figure 1. It only requires the dataset of the target application and high-level
-            design constraints such as total resource budget to produce a unified optimized acceleration solution
-            targeting at a typical heterogeneous CPU+FPGA architecture that can be immediately deployed, while the
-            application developers can focus on the application development without dealing with the complex neural
-            network model designing nor the low-level accelerator parameter tuning. Particularly, we propose an
-            efficient co-designed autoML search framework named YOSO [2] that seeks to optimize the neural network
-            architecture and the NPU parameters at the same time. Note that DeepBurning relies on a pre-built NPU
-            template that allows flexible configuration and customization. The template is supposed to be developed by
-            skilled hardware designers to ensure efficient hardware implementation.</p>
-          <div align="center"><img src="/assets/img/deepburing.50d5f86b.svg" width="100%" height="100%"> <br>
-            <div style="display:inline-block;color:#999;padding:2px;"> Figure 1 DeepBuring Overview</div>
-          </div>
-          <p>DeepBurning is under active development. The major components including YOSO and NPU compilation are
-            already in use while the automatic NPU generation based on the pre-built template still needs quite some
-            handcrafted adjustment. We will put it online soon when we get it ready. Currently, we only allow the users
-            to compile neural network models to a specific NPU configuration.</p> <br>
-          <h2 id="key-features-and-update-news"><a href="#key-features-and-update-news" class="header-anchor">#</a> Key
-            features and update news</h2>
-          <p>Supported</p>
-          <ul>
-            <li>Given high-level design constraints, YOSO can be used to search for the optimized neural network
-              architecture and NPU configuration.</li>
-            <li>Neural network models described in Prototxt can be compiled to instructions and then deployed on the
-              pre-built NPU. Currently, we just provide some pre-compiled neural networks and we will offer a free
-              on-line compiler later.</li>
-            <li>A typical NPU with 2D array computing architecture is provided as a netlist. Its architecture is shown
-              in Figure 2. It consists of 128 KB I/O buffer that can be allocated for input and output dynamically and
-              supports data prefetch to hide the external memory access overhead. It covers a large number of typical
-              operations utilized in typical neural networks and relevant image processing operations, so it supports
-              more than 30 neural networks. The supported operations and neural network models are listed in Table 1.
-            </li>
-            <li>The generated accelerators and drivers can be utilized in Xilinx Zynq 7000 devices. Particularly, the
-              design is verified on ZC706 and MZ7100. The corresponding Linux kernel and root file system is also
-              provided.</li>
-          </ul>
-          <div align="center"><img src="/assets/img/npu.eaf61c51.svg" width="60%" height="60%"> <br>
-            <div style="display:inline-block;color:#999;padding:2px;">Figure 2 NPU Architecture</div>
-          </div> <br>
-          <div align="center">
-            <div style="display:inline-block;color:#999;padding:2px;"> Table 1 Supported NPU operations and neural
-              network models</div>
-          </div>
-          <center>
-          <table>
-            <thead>
-              <tr>
-                <th style="text-align:center;">Neural network operations</th>
-                <th style="text-align:center;">General computing operations</th>
-                <th style="text-align:center;">Neural network models</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td style="text-align:center;">Convolution, deconvolution, 3D convolution, grouped convolution, Full
-                  connection, Softmax, Elementwise, Concat, Reorganization, Batch normalization, Pooling (average, max)
-                  Activation function (Relu, Prelu, Leaky Relu, tanh, Sigmoid, …)</td>
-                <td style="text-align:center;">Matrix-matrix multiplication, Matrix-vector multiplication,
-                  Dot-production, Cosine distance, Feature scaling</td>
-                <td style="text-align:center;">GoogleNet, DenseNet, VGG, ResNet, MobileNet, SqueezeNet, DCGAN, LSTM,
-                  MTCNN, Hourglass, …</td>
-              </tr>
-            </tbody>
-          </table>
-          </center>
-          <br>
-          <h2 id="performance-evaluation"><a href="#performance-evaluation" class="header-anchor">#</a> Performance
-            evaluation</h2>
-          <p>We measure the performance and the FPGA resource consumption on MZ7100 board which includes a Zynq 7100
-            FPGA chip. The NPU kernel runs at 100 MHz and it can be optimized up to 200 MHz. The measured fps on
-            ImageNet is shown in Table 2 and the total FPGA resource overhead is presented in Table 3.</p>
-          <div align="center">
-            <div style="display:inline-block;color:#999;padding:2px;"> Table 2 Performance Evaluation</div>
-          </div>
-          <table>
-            <thead>
-              <tr>
-                <th style="text-align:center;">Neural Network Models</th>
-                <th style="text-align:center;">Fps (100 MHz)</th>
-                <th style="text-align:center;">Fps (200 MHz)</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td style="text-align:center;">ResNet</td>
-                <td style="text-align:center;">xxx</td>
-                <td style="text-align:center;">xxx</td>
-              </tr>
-              <tr>
-                <td style="text-align:center;">xxx</td>
-                <td style="text-align:center;">xxx</td>
-                <td style="text-align:center;">xxx</td>
-              </tr>
-              <tr>
-                <td style="text-align:center;">xxx</td>
-                <td style="text-align:center;">xxx</td>
-                <td style="text-align:center;">xxx</td>
-              </tr>
-            </tbody>
-          </table> <br>
-          <div align="center">
-            <div style="display:inline-block;color:#999;padding:2px;"> Table 3 NPU resource consumption on MZ7100</div>
-          </div>
-          <table>
-            <thead>
-              <tr>
-                <th>LUT</th>
-                <th>BRAM</th>
-                <th>DSP</th>
-                <th>FF</th>
-                <th>IO</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Xxx</td>
-                <td>dsds</td>
-                <td>DSP</td>
-                <td>FF</td>
-                <td>IO</td>
-              </tr>
-            </tbody>
-          </table> <br>
-          <h2 id="demo-video"><a href="#demo-video" class="header-anchor">#</a> Demo video</h2>
-          <p>We also present two application videos in which we utilize DeepBurning to generate the acceleration
-            solution on MZ7100 board.</p>
-          <ul>
-            <li>
-              <p>Realtime object detection</p>
-            </li>
-            <li>
-              <p>Realtime style transfer</p>
-            </li>
-          </ul> <br>
-          <h2 id="how-to-cite-deepburning"><a href="#how-to-cite-deepburning" class="header-anchor">#</a> How to cite
-            DeepBurning?</h2>
-          <p>If you use DeepBurning in your paper, please cite our work.</p>
-          <div class="language- extra-class">
-            <pre class="language-text"><code>@inproceedings{wang2016deepburning,
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>DeepBurning</title>
+    <meta name="description" content="Automatic generation of FPGA-based learning accelerators for the Neural Network family">
+    
+    
+    <link rel="preload" href="/assets/css/0.styles.871f8cc4.css" as="style"><link rel="preload" href="/assets/js/app.6320a320.js" as="script"><link rel="preload" href="/assets/js/2.3c0b82b5.js" as="script"><link rel="preload" href="/assets/js/4.f1a732b9.js" as="script"><link rel="prefetch" href="/assets/js/3.7077366f.js"><link rel="prefetch" href="/assets/js/5.417be158.js"><link rel="prefetch" href="/assets/js/6.f9dcf02c.js"><link rel="prefetch" href="/assets/js/7.2c827474.js"><link rel="prefetch" href="/assets/js/8.eac7943a.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.871f8cc4.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container no-sidebar"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-exact-active router-link-active"><!----> <span class="site-name">DeepBurning</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/documentation/" class="nav-link">Documentation</a></div><div class="nav-item"><a href="/publications/" class="nav-link">Publications</a></div><div class="nav-item"><a href="/about/" class="nav-link">About</a></div><div class="nav-item"><a href="/download/" class="nav-link">Download</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/documentation/" class="nav-link">Documentation</a></div><div class="nav-item"><a href="/publications/" class="nav-link">Publications</a></div><div class="nav-item"><a href="/about/" class="nav-link">About</a></div><div class="nav-item"><a href="/download/" class="nav-link">Download</a></div> <!----></nav>  <!----> </aside> <main aria-labelledby="main-title" class="home"><header class="hero"><img src="/logo.png" alt="hero"> <!----> <p class="description">
+      Automatic generation of FPGA-based learning accelerators for the Neural Network family
+    </p> <p class="action"><a href="/documentation.html" class="nav-link action-button">Get Started →</a></p></header> <!----> <div class="theme-default-content custom content__default"><br> <h2 id="introduction"><a href="#introduction" class="header-anchor">#</a> Introduction</h2> <p>DeepBurning [1] is an end-to-end neural network acceleration design tool that generates both customized neural network model and neural processing unit (NPU) for a specialized learning task on FPGAs. The overview of DeepBurning is shown in Figure 1. It only requires the dataset of the target application and high-level design constraints such as total resource budget to produce a unified optimized acceleration solution targeting at a typical heterogeneous CPU+FPGA architecture that can be immediately deployed, while the application developers can focus on the application development without dealing with the complex neural network model designing nor the low-level accelerator parameter tuning. Particularly, we propose an efficient co-designed autoML search framework named YOSO [2] that seeks to optimize the neural network architecture and the NPU parameters at the same time. Note that DeepBurning relies on a pre-built NPU template that allows flexible configuration and customization. The template is supposed to be developed by skilled hardware designers to ensure efficient hardware implementation.</p> <div align="center"><img src="/assets/img/deepburing.50d5f86b.svg" width="100%" height="100%"> <br> <div style="display:inline-block;color:#999;padding:2px;"> Figure 1 DeepBuring Overview</div></div> <p>DeepBurning is under active development. The major components including YOSO and NPU compilation are already in use while the automatic NPU generation based on the pre-built template still needs quite some handcrafted adjustment. We will put it online soon when we get it ready. Currently, we only allow the users to compile neural network models to a specific NPU configuration.</p> <br> <h2 id="key-features-and-update-news"><a href="#key-features-and-update-news" class="header-anchor">#</a> Key features and update news</h2> <p>Supported</p> <ul><li>Given high-level design constraints, YOSO can be used to search for the optimized neural network architecture and NPU configuration.</li> <li>Neural network models described in Prototxt can be compiled to instructions and then deployed on the pre-built NPU. Currently, we just provide some pre-compiled neural networks and we will offer a free on-line compiler later.</li> <li>A typical NPU with 2D array computing architecture is provided as a netlist. Its architecture is shown in Figure 2. It consists of 128 KB I/O buffer that can be allocated for input and output dynamically and supports data prefetch to hide the external memory access overhead. It covers a large number of typical operations utilized in typical neural networks and relevant image processing operations, so it supports more than 30 neural networks. The supported operations and neural network models are listed in Table 1.</li> <li>The generated accelerators and drivers can be utilized in Xilinx Zynq 7000 devices. Particularly, the design is verified on ZC706 and MZ7100. The corresponding Linux kernel and root file system is also provided.</li></ul> <div align="center"><img src="/assets/img/npu.eaf61c51.svg" width="60%" height="60%"> <br> <div style="display:inline-block;color:#999;padding:2px;">Figure 2 NPU Architecture</div></div> <br> <div align="center"><div style="display:inline-block;color:#999;padding:2px;"> Table 1 Supported NPU operations and neural network models</div></div> <table><thead><tr><th style="text-align:center;">Neural network operations</th> <th style="text-align:center;">General computing operations</th> <th style="text-align:center;">Neural network models</th></tr></thead> <tbody><tr><td style="text-align:center;">Convolution, deconvolution, 3D convolution, grouped convolution, Full connection, Softmax, Elementwise, Concat, Reorganization, Batch normalization, Pooling (average, max) Activation function (Relu, Prelu, Leaky Relu, tanh, Sigmoid, …)</td> <td style="text-align:center;">Matrix-matrix multiplication, Matrix-vector multiplication, Dot-production, Cosine distance, Feature scaling</td> <td style="text-align:center;">GoogleNet, DenseNet, VGG, ResNet, MobileNet, SqueezeNet, DCGAN, LSTM, MTCNN, Hourglass, …</td></tr></tbody></table> <br> <h2 id="performance-evaluation"><a href="#performance-evaluation" class="header-anchor">#</a> Performance evaluation</h2> <p>We measure the performance and the FPGA resource consumption on MZ7100 board which includes a Zynq 7100 FPGA chip. The NPU kernel runs at 100 MHz and it can be optimized up to 200 MHz. The measured fps on ImageNet is shown in Table 2 and the total FPGA resource overhead is presented in Table 3.</p> <div align="center"><div style="display:inline-block;color:#999;padding:2px;"> Table 2 Performance Evaluation</div></div> <table><thead><tr><th style="text-align:center;">Neural Network Models</th> <th style="text-align:center;">Fps (100 MHz)</th> <th style="text-align:center;">Fps (200 MHz)</th></tr></thead> <tbody><tr><td style="text-align:center;">ResNet</td> <td style="text-align:center;">xxx</td> <td style="text-align:center;">xxx</td></tr> <tr><td style="text-align:center;">xxx</td> <td style="text-align:center;">xxx</td> <td style="text-align:center;">xxx</td></tr> <tr><td style="text-align:center;">xxx</td> <td style="text-align:center;">xxx</td> <td style="text-align:center;">xxx</td></tr></tbody></table> <br> <div align="center"><div style="display:inline-block;color:#999;padding:2px;"> Table 3 NPU resource consumption on MZ7100</div></div> <table><thead><tr><th>LUT</th> <th>BRAM</th> <th>DSP</th> <th>FF</th> <th>IO</th></tr></thead> <tbody><tr><td>Xxx</td> <td>dsds</td> <td>DSP</td> <td>FF</td> <td>IO</td></tr></tbody></table> <br> <h2 id="demo-video"><a href="#demo-video" class="header-anchor">#</a> Demo video</h2> <p>We also present two application videos in which we utilize DeepBurning to generate the acceleration solution on MZ7100 board.</p> <ul><li><p>Realtime object detection</p></li> <li><p>Realtime style transfer</p></li></ul> <br> <h2 id="how-to-cite-deepburning"><a href="#how-to-cite-deepburning" class="header-anchor">#</a> How to cite DeepBurning?</h2> <p>If you use DeepBurning in your paper, please cite our work.</p> <div class="language- extra-class"><pre class="language-text"><code>@inproceedings{wang2016deepburning,
   title={DeepBurning: automatic generation of FPGA-based learning accelerators for the neural network family},
   author={Wang, Ying and Xu, Jie and Han, Yinhe and Li, Huawei and Li, Xiaowei},
   booktitle={Proceedings of the 53rd Annual Design Automation Conference},
@@ -214,19 +21,9 @@
   year={2016},
   organization={ACM}
 }
-</code></pre>
-          </div>
-        </div>
-        <div class="footer">
-          MIT Licensed
-        </div>
-      </main>
-    </div>
-    <div class="global-ui"></div>
-  </div>
-  <script src="/assets/js/app.987fdba2.js" defer></script>
-  <script src="/assets/js/2.3c0b82b5.js" defer></script>
-  <script src="/assets/js/4.16c16494.js" defer></script>
-</body>
-
+</code></pre></div></div> <div class="footer">
+    MIT Licensed
+  </div></main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.6320a320.js" defer></script><script src="/assets/js/2.3c0b82b5.js" defer></script><script src="/assets/js/4.f1a732b9.js" defer></script>
+  </body>
 </html>
